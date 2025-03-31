@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+body{
+    background-color: black;
+    color: white;
+}
+
+#tasklistcards::-webkit-scrollbar{
+    display: none;
+   
+}
+
+#alltask::-webkit-scrollbar{
+    display: none;
+   
+}
