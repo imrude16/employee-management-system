@@ -11,8 +11,6 @@ const Createtask = () => {
     const [assignTo, setassignTo] = useState('')
     const [category, setcategory] = useState('')
 
-
-
     const submitHandler = (e) => {
         e.preventDefault();
 
@@ -28,7 +26,6 @@ const Createtask = () => {
             failed_task: false,
             completed_task: false
         };
-
 
         // Create a new userData array with updated tasks
         const updatedUserData = userData.map(user => {
@@ -55,67 +52,113 @@ const Createtask = () => {
         settaskDescription('');
     };
 
-
-
     return (
-        <div className='p-5 bg-[#1c1c1c] mt-7 rounded '>
-            <form onSubmit={(e) => {
-                submitHandler(e)
-            }} className='flex  flex-wrap w-full items-start justify-between'>
-                <div className='w-1/2'>
-                    <div>
-                        <h3 className='text-sm mb-0.5'>Task Tittle</h3>
-                        <input value={tasktittle}
-                            onChange={(e) => {
-                                settasktittle(e.target.value)
-                            }}
+        <div className='p-4 text-gray-900 bg-white/70 backdrop-blur-sm border border-slate-200 shadow-xl rounded-2xl p-6 animate-fade-in'>
+            <h2 className='text-xl font-semibold mb-3 text-gray-700' className='p-4 text-gray-900 text-2xl font-bold text-slate-800 mb-6'>Create New Task</h2>
+            
+            <form onSubmit={(e) => { submitHandler(e) }} className='p-4 text-gray-900 space-y-6'>
+                <div className='p-4 text-gray-900 grid grid-cols-1 lg:grid-cols-2 gap-8'>
+                    {/* Left Column - Basic Info */}
+                    <div className='p-4 text-gray-900 space-y-6'>
+                        <div>
+                            <label className='p-4 text-gray-900 block text-sm font-semibold text-slate-700 mb-2'>
+                                Task Title
+                            </label>
+                            <input className='w-full' 
+                                value={tasktittle}
+                                onChange={(e) => { settasktittle(e.target.value) }}
+                                required
+                                className='p-4 text-gray-900 w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-300 transition-all duration-200'
+                                type="text" 
+                                placeholder='e.g., Create UI design mockups'
+                            />
+                        </div>
 
-                            className='text-sm py-1 px-2 w-4/5 rounded outline-none border-[1px] border-gray-400 mb-4' type="text" placeholder='Make a UI design' />
+                        <div>
+                            <label className='p-4 text-gray-900 block text-sm font-semibold text-slate-700 mb-2'>
+                                Due Date
+                            </label>
+                            <input className='w-full' 
+                                value={taskDate}
+                                onChange={(e) => { settaskDate(e.target.value) }}
+                                required
+                                className='p-4 text-gray-900 w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-300 transition-all duration-200'
+                                type="date"
+                            />
+                        </div>
+
+                        <div>
+                            <label className='p-4 text-gray-900 block text-sm font-semibold text-slate-700 mb-2'>
+                                Assign To
+                            </label>
+                            <input className='w-full' 
+                                value={assignTo}
+                                onChange={(e) => { setassignTo(e.target.value) }}
+                                required
+                                className='p-4 text-gray-900 w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-300 transition-all duration-200'
+                                type="text" 
+                                placeholder='Employee name'
+                                list='employees'
+                            />
+                            <datalist id='employees'>
+                                {userData?.map((employee, index) => (
+                                    <option key={index} value={employee.firstname} />
+                                ))}
+                            </datalist>
+                        </div>
+
+                        <div>
+                            <label className='p-4 text-gray-900 block text-sm font-semibold text-slate-700 mb-2'>
+                                Category
+                            </label>
+                            <input className='w-full' 
+                                value={category}
+                                onChange={(e) => { setcategory(e.target.value) }}
+                                required
+                                className='p-4 text-gray-900 w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-300 transition-all duration-200'
+                                type="text" 
+                                placeholder='e.g., Design, Development, Research'
+                                list='categories'
+                            />
+                            <datalist id='categories'>
+                                <option value="Design" />
+                                <option value="Development" />
+                                <option value="Research" />
+                                <option value="Testing" />
+                                <option value="Documentation" />
+                                <option value="Meetings" />
+                                <option value="Training" />
+                            </datalist>
+                        </div>
                     </div>
 
-                    <div>
-                        <h3 className='text-sm mb-0.5'>Date</h3>
-                        <input value={taskDate}
-                            onChange={(e) => {
-                                settaskDate(e.target.value)
-                            }}
-
-                            className='text-sm py-1 px-2 w-4/5 rounded outline-none border-[1px] border-gray-400 mb-4' type="date" />
+                    {/* Right Column - Description */}
+                    <div className='p-4 text-gray-900 space-y-6'>
+                        <div className='p-4 text-gray-900 h-full flex flex-col'>
+                            <label className='p-4 text-gray-900 block text-sm font-semibold text-slate-700 mb-2'>
+                                Task Description
+                            </label>
+                            <textarea className='w-full' 
+                                value={taskDescription}
+                                onChange={(e) => { settaskDescription(e.target.value) }}
+                                required
+                                rows={8}
+                                className='p-4 text-gray-900 flex-1 w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-slate-800 placeholder-slate-400 resize-none focus:outline-none focus:ring-2 focus:ring-emerald-200 focus:border-emerald-300 transition-all duration-200'
+                                placeholder='Provide detailed description of the task, requirements, and expected deliverables...'
+                            />
+                        </div>
                     </div>
-
-                    <div>
-                        <h3 className='text-sm mb-0.5'>Assign to</h3>
-                        <input value={assignTo}
-                            onChange={(e) => {
-                                setassignTo(e.target.value)
-                            }}
-
-                            className='text-sm py-1 px-2 w-4/5 rounded outline-none border-[1px] border-gray-400 mb-4' type="text" placeholder='Employee name' />
-                    </div>
-
-                    <div>
-                        <h3 className='text-sm mb-0.5'>Category</h3>
-                        <input value={category}
-                            onChange={(e) => {
-                                setcategory(e.target.value)
-                            }}
-
-                            className='text-sm py-1 px-2 w-4/5 rounded outline-none border-[1px] border-gray-400 mb-4' type="text" placeholder='Design , Devlopement ,etc.' />
-                    </div>
-
                 </div>
 
-                <div className='w-2/5 flex flex-col items-start'>
-                    <h3 className='text-lg mb-0.5'>Description</h3>
-                    <textarea value={taskDescription}
-                        onChange={(e) => {
-                            settaskDescription(e.target.value)
-                        }}
-
-                        className='w-full h-44 text-sm py-2 px-4 rounded outline-none border-[1px] border-gray-400'></textarea>
-                    <button className='bg-green-500 py-1 px-3 hover:bg-green-600 rounded text-sm mt-4 w-full'>Create Task</button>
+                {/* Submit Button */}
+                <div className='p-4 text-gray-900 pt-4 border-t border-slate-200'>
+                    <button className='bg-indigo-600 text-white hover:bg-indigo-700' 
+                        type='submit'
+                        className='p-4 text-gray-900 w-full sm:w-auto bg-gradient-to-r from-emerald-100 to-cyan-100 hover:from-emerald-200 hover:to-cyan-200 text-slate-800 font-semibold py-3 px-8 rounded-xl border border-emerald-200 transition-all duration-200 transform hover:scale-[1.02] hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-emerald-200'
+                    >
+                        Create Task
+                    </button>
                 </div>
-
             </form>
         </div>
     )

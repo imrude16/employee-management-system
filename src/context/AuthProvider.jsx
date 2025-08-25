@@ -15,8 +15,8 @@ const AuthProvider = ({children}) => {
     }, [])    
 
   return (
-    <div>
-        <AuthContext.Provider  value={[userData,setuserData]}>
+    <div className='min-h-screen bg-gradient-to-br from-slate-50 via-stone-50 to-neutral-100'>
+        <AuthContext.Provider value={[userData,setuserData]}>
             {children}
         </AuthContext.Provider>
     </div>

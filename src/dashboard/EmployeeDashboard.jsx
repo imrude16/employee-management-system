@@ -5,10 +5,12 @@ import TaskListCards from '../tasklist/TaskListCards'
 
 const EmployeeDashboard = (props) => {
   return (
-    <div className='p-10 bg-[#1C1C1C] h-screen'>
-      <Header changeUser={props.changeUser} firstName={props.data?.firstname} />
-      <TaskListNumbers data = {props.data} />
-      <TaskListCards data = {props.data} />
+    <div className='p-4 text-gray-900 min-h-screen w-full bg-gradient-to-br from-slate-50 via-stone-50 to-neutral-100 p-4 sm:p-6 lg:p-10'>
+      <div className='p-4 text-gray-900 max-w-7xl mx-auto space-y-8'>
+        <Header changeUser={props.changeUser} firstName={props.data?.firstname} />
+        <TaskListNumbers data={props.data} />
+        <TaskListCards data={props.data} />
+      </div>
     </div>
   )
 }
