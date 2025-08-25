@@ -10,7 +10,7 @@ const App = () => {
 
   const [user, setuser] = useState(null)
   const [loggedInUserData, setloggedInUserData] = useState(null)
-  const [userData, setuserData] = useContext(AuthContext)
+  const [userData] = useContext(AuthContext)
 
   useEffect(() => {
     const loggedInuser = localStorage.getItem('loggedInUser')
@@ -27,7 +27,7 @@ const App = () => {
 
   
   const handleLogIn = (email, password) => {
-    if (email == 'admin16@gmail.com' && password == '12345') {
+    if (email == 'admin@gmail.com' && password == '12345') {
       setuser('admin')
       localStorage.setItem('loggedInUser', JSON.stringify({ role: 'admin' }))
 

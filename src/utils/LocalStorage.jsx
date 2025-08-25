@@ -1,9 +1,9 @@
-// localStorage.clear()
+//localStorage.clear()
 const employees =[
     {
         "id": 1,
         "firstname": "Deovrat",
-        "email": "e@e.com",
+        "email": "employee1@gmail.com",
         "password": "12345",
         "task_count": {
             "active": 2,
@@ -47,7 +47,7 @@ const employees =[
     {
         "id": 2,
         "firstname": "Vatsala",
-        "email": "employee2@example.com",
+        "email": "employee2@gmail.com",
         "password": "12345",
         "task_count": {
             "active": 2,
@@ -90,8 +90,8 @@ const employees =[
     },
     {
         "id": 3,
-        "firstname": "Pookie",
-        "email": "employee3@example.com",
+        "firstname": "Akash",
+        "email": "employee3@gmail.com",
         "password": "12345",
         "task_count": {
             "active": 2,
@@ -226,7 +226,7 @@ const employees =[
 const admin = [
     {
         "id": 1,
-        "email": "admin@example.com",
+        "email": "admin@gamil.com",
         "password": "12345"
     }
 ]
